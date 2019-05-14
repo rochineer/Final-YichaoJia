@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset='utf-8' />
+      <title>Detroit Neighborhood Search</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css" integrity="sha256-iYUgmrapfDGvBrePJPrMWQZDcObdAcStKBpjP3Az+3s=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.css" integrity="sha256-XzD3RpaHPv7lzX9qt+2n1j5cWj48O24KsgaGYpKN8x8=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+
+    <!-- Place framework CSS code here. -->
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="container">
+        <div class="row">
+          <div  class="col">
+            <nav id="leftBar" class="navbar">
+              <img id="icon1" src="logo.png" alt="DetroitSearch">
+              <nav id="barSelect" class="navbar">
+                <label class="container-check">Schools
+                  <input  type="checkbox" value="" id="defaultCheck1">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container-check">Parks
+                  <input type="checkbox" value="" id="defaultCheck2">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container-check">Libraries
+                  <input type="checkbox" value="" id="defaultCheck3">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container-check">Rec Center
+                  <input type="checkbox" value="" id="defaultCheck4">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container-check">Bike Lanes
+                  <input type="checkbox" value="" id="defaultCheck5">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container-check">Hospitals
+                  <input type="checkbox" value="" id="defaultCheck6">
+                  <span class="checkmark"></span>
+                </label>
+              </nav>
+              <button id="extra1" type="button" class="btn btn-secondary btn-sm">Remove All</button>
+            </nav>
+          </div>
+          <div class="col-8">
+              <h3 id="Menu-heading1" class="item-heading">Exploring Detroit</h3>
+              <div class="hr" id="line1" ></div>
+              <div id="container-intro" class="container-intro">
+                <div class="item">
+                  <p id="intro-text1" class="pureText">
+                    DETROIT - A city that is simultaneously beautiful and ugly. Some people say the city is dead already,
+                    while others believe that only within Detroit one gets the opportunity to play a role in making history -
+                    the revival of a used-to-be powerful American city.
+                  </p>
+                  <p id="intro-text2" class="pureText">
+                    Debates keep going on around whether or not the city could be livable again in the future, and whether or not its quality of living
+                    now is real bad. Using the datasets available from the City of Detroit's <a href="https://data.detroitmi.gov/"> Open Data Portal</a>,
+                    this webpage aims to facilitate the exploration of Detroit's existing public realm, urban amenities and civic services.
+                  </p>
+
+                  <button id="extra2" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#myModal">
+                    User Guide
+                  </button>
+                </div>
+              </div>
+
+
+                <h3 id="Menu-heading2" class="item-heading">Exploring Neighborhoods</h3>
+                <div class="hr" id="line2" ></div>
+                <label id="sliderSwitch" class="switch">NEIGHBORHOOD LAYER
+                  <input id="sliderCheck" type="checkbox">
+                  <span class="slider"></span>
+                </label>
+                  <label id="sliderSwitch2" class="switch">CITY BOUNDARIES
+                  <input id="sliderCheck2" type="checkbox" checked>
+                  <span class="slider"></span>
+                </label>
+            </div>
+
+            <div id="extra3" class="btn-group dropup">
+              <button id="extra3_left" type="button" class="btn btn-secondary btn-sm">Change Map Style</button>
+              <button id="extra3_right" type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <option class="dropdown-item" id="LabelsOn" href="#">Turn ON Lables</option>
+                <option class="dropdown-item" id="LabelsOff" href="#">Turn OFF Labels</option>
+                <div class="dropdown-divider"></div>
+                <option class="dropdown-item" id="LightAll" href="#">Go to Light Mode</option>
+                <option class="dropdown-item" id="DarkAll" href="#">Go to Dark Mode</option>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Map -->
+    <div id="map" class="map"></div>
+    <div id='info2' class='info2_container'></div>
+    <button id='info-btn' class='info-btn'>Exit</button>
+
+
+    <!-- Javascript Imports -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js" integrity="sha256-CNm+7c26DTTCGRQkM9vp7aP85kHFMqs9MhPEuytF+fQ=" crossorigin="anonymous"></script>
+    <!-- Place framework JS code here. -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.2/leaflet.draw.js" integrity="sha256-jzmB6xy6L0YPzPeu+ccUiPKp3UE+qRmo5xmq5BbnSv0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@5/turf.min.js"></script>
+    <script src="js/setup.js"></script>
+    <script src="outline.geojson"></script>
+    <script src="js/main.js"></script>
+  </body>
+
+  <div id="myModal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" >What you can do with this map...</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h6>Change the base map</h6> <p> You can choose from the dropup list the base map style you want. </p>
+            <h6>Map the amenities</h6> <p> You can check the boxes to add the layers and uncheck to remove them. If click on the button at the bottom of the sidebar you remove them all. </p>
+            <h6>Get further Information</h6> <p> After adding the amenity layers to your map, by clicking on the markers/polygons you can see some basic information about that amenity. </p>
+            <h6>Neighborhood Snapshot</h6> <p> If you turn on the neighborhood layer, you can learn each neighborhood's name nad location by hovering your mouse over the polygons. You can also zoom into one neighborhood by clicking on it. </p>
+            <h6>Measure Distance</h6> <p> The toolbar on the left of the map allows you to draw points on the map and get the distance between the two points you draw. </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+</html>

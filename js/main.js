@@ -1,6 +1,6 @@
 
 var detroitSchool = "https://opendata.arcgis.com/datasets/b308d05e82614ab4979690e04c90294b_0.geojson";
-var detroitPark = "https://opendata.arcgis.com/datasets/9152042be3fe45029643cd41f783568b_0.geojson";
+var detroitPark = "https://opendata.arcgis.com/datasets/7a608c3ca434474abbca3cbcf1f96c59_0.geojson";
 var detroitLibrary = "https://opendata.arcgis.com/datasets/464cf28590764dd69169d8d01428ce90_0.geojson";
 var detroitRec = "https://opendata.arcgis.com/datasets/5639faf260dd483aa5ab0f578e24154f_0.geojson";
 var detroitAlameda = "https://opendata.arcgis.com/datasets/4b886654a8d846a782658bd4712e7952_0.geojson";
@@ -31,43 +31,49 @@ var outlineLyr = L.geoJson(outline, {
 outlineLyr.addTo(map);
 
 function addPopUpSchool(feature, layer) {
-  var popupContent = "<dt>School/Site Name: " + "<dd>" + feature.properties.sitename;
+  var popupContent = "<dl>School/Site Name: " + "<dd>" + feature.properties.sitename;
   layer.bindPopup(popupContent);
 }
 
 function addPopUpPark(feature, layer) {
-  var popupContent = "<dt>Type: " + "<dd>" + feature.properties.new_class + " Park</dd>"
-      + "<dt>Name: " + "<dd>" + feature.properties.name + "</dd>"
-      + "<dt>Acres: " + "<dd>" + feature.properties.acres + "</dd>";
+  var popupContent = "<dl>Type: " + "<dd>" + feature.properties.new_class + " Park</dd>"
+      + "<dl>Name: " + "<dd>" + feature.properties.name + "</dd>"
+      + "<dl>Acres: " + "<dd>" + feature.properties.acres + "</dd>";
   layer.bindPopup(popupContent);
 }
 
 function addPopUpLib(feature, layer) {
-  var popupContent = "<dt>Name: " + "<dd>" + feature.properties.name
-      + "<dt>Address: " + "<dd>" + feature.properties.address + "</dd>";
+  var popupContent = "<dl>Name: " + "<dd>" + feature.properties.name
+      + "<dl>Address: " + "<dd>" + feature.properties.address + "</dd>";
   layer.bindPopup(popupContent);
 }
 
 
 function addPopUpRec(feature, layer) {
-  var popupContent = "<dt>Type: " + "<dd>" + feature.properties.type
-      + "<dt>Name: " + "<dd>" + feature.properties.name + "</dd>"
-      + "<dt>Address: " + "<dd>" + feature.properties.address + "</dd>"
-      + "<dt>Condition: " + "<dd>" + feature.properties.condition + "</dd>"
-      + "<dt>Suggestion: " + "<dd>" + feature.properties.recommend + "</dd>";
+  var popupContent = "<dl>Type: " + "<dd>" + feature.properties.type
+      + "<dl>Name: " + "<dd>" + feature.properties.name + "</dd>"
+      + "<dl>Address: " + "<dd>" + feature.properties.address + "</dd>"
+      + "<dl>Condition: " + "<dd>" + feature.properties.condition + "</dd>"
+      + "<dl>Suggestion: " + "<dd>" + feature.properties.recommend + "</dd>";
   layer.bindPopup(popupContent);
 }
 
+
+var markerOption0 = {
+        radius: 2,
+        fillColor: "#0066cc",
+        color: "#0066cc",
+        weight: 1,
+        fillOpacity: 1
+};
 
 
 var addSchools = () => {
   $.getJSON(detroitSchool,function(data) {
       myLayers[0] = L.geoJson(data, {
-        style: {
-      "color": "#2d6389",
-      "weight": 1,
-      "opacity": 0.9
-      },
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, markerOption0);
+          },
     onEachFeature: addPopUpSchool
     });
   });
@@ -117,13 +123,7 @@ var markerOption3 = {
         fillOpacity: 0.8
 };
 
-var markerOption0 = {
-        radius: 5,
-        fillColor: "#000",
-        color: "#000",
-        weight: 1,
-        fillOpacity: 1
-};
+
 
 
 

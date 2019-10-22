@@ -1,11 +1,11 @@
 
-var detroitSchool = "https://data.detroitmi.gov/api/geospatial/ipa4-scig?method=export&format=GeoJSON";
-var detroitPark = "https://data.detroitmi.gov/api/geospatial/yu9n-k8rd?method=export&format=GeoJSON";
-var detroitLibrary = "https://data.detroitmi.gov/api/geospatial/exqw-7q3h?method=export&format=GeoJSON";
-var detroitRec = "https://data.detroitmi.gov/api/geospatial/ku5j-w3uv?method=export&format=GeoJSON";
-var detroitAlameda = "https://data.detroitmi.gov/api/geospatial/g6eq-mhyv?method=export&format=GeoJSON";
-var detroitHospital = "https://data.detroitmi.gov/api/geospatial/9irz-u76s?method=export&format=GeoJSON";
-var detroitNeighborhood = "https://data.detroitmi.gov/api/geospatial/5mn6-ihjv?method=export&format=GeoJSON";
+var detroitSchool = "https://opendata.arcgis.com/datasets/b308d05e82614ab4979690e04c90294b_0.geojson";
+var detroitPark = "https://opendata.arcgis.com/datasets/9152042be3fe45029643cd41f783568b_0.geojson";
+var detroitLibrary = "https://opendata.arcgis.com/datasets/464cf28590764dd69169d8d01428ce90_0.geojson";
+var detroitRec = "https://opendata.arcgis.com/datasets/5639faf260dd483aa5ab0f578e24154f_0.geojson";
+var detroitAlameda = "https://opendata.arcgis.com/datasets/4b886654a8d846a782658bd4712e7952_0.geojson";
+var detroitHospital = "https://opendata.arcgis.com/datasets/00c18efb31d94dc99ed61308e9c84562_0.geojson";
+var detroitNeighborhood = "https://opendata.arcgis.com/datasets/f08cca6141fc454394e25f96ea9facef_0.geojson";
 
 
 

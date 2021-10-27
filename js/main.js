@@ -227,7 +227,7 @@ function initialStyle(feature) {
         opacity: 1,
         color: 'white',
         dashArray: '5',
-        fillOpacity: 0.35
+        fillOpacity: 0.75
       };
     }
 

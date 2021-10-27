@@ -33,7 +33,7 @@ var outlineLyr = L.geoJson(outline, {
 outlineLyr.addTo(map);
 
 function addPopUpSchool(feature, layer) {
-  var popupContent = "<dl>School/Site Name: " + "<dd>" + feature.properties.sitename;
+  var popupContent = "<dl>School Name: " + "<dd>" + feature.properties.EntityOfficialName;
   layer.bindPopup(popupContent);
 }
 
@@ -44,18 +44,18 @@ function addPopUpPark(feature, layer) {
 }
 
 function addPopUpLib(feature, layer) {
-  var popupContent = "<dl>Name: " + "<dd>" + feature.properties.name
+  var popupContent = "<dl>Name: " + "<dd>" + feature.properties.name +"</dd>"
       + "<dl>Address: " + "<dd>" + feature.properties.address + "</dd>";
   layer.bindPopup(popupContent);
 }
 
 
 function addPopUpRec(feature, layer) {
-  var popupContent = "<dl>Type: " + "<dd>" + feature.properties.type
-      + "<dl>Name: " + "<dd>" + feature.properties.name + "</dd>"
-      + "<dl>Address: " + "<dd>" + feature.properties.address + "</dd>"
-      + "<dl>Condition: " + "<dd>" + feature.properties.condition + "</dd>"
-      + "<dl>Suggestion: " + "<dd>" + feature.properties.recommend + "</dd>";
+  var popupContent = "<dl>Name: " + "<dd>" + feature.properties.Site + "</dd>"
+      +  "<dl>Contact: " + "<dd>" + feature.properties.Phone + "</dd>"
+      + "<dl>Address: " + "<dd>" + feature.properties.Address + "</dd>"
+      + "<dl>Hours(weekday): " + "<dd>" + feature.properties.WeekdayHours + "</dd>"
+      + "<dl>Hours(weekend): " + "<dd>" + feature.properties.WeekendHours + "</dd>";
   layer.bindPopup(popupContent);
 }
 

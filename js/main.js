@@ -38,9 +38,8 @@ function addPopUpSchool(feature, layer) {
 }
 
 function addPopUpPark(feature, layer) {
-  var popupContent = "<dl>Type: " + "<dd>" + feature.properties.new_class + " Park</dd>"
-      + "<dl>Name: " + "<dd>" + feature.properties.name + "</dd>"
-      + "<dl>Acres: " + "<dd>" + feature.properties.acres + "</dd>";
+  var popupContent = "<dl>Type: " + "<dd>" + feature.properties.Type + " </dd>"
+      + "<dl>Name: " + "<dd>" + feature.properties.FULLNAME + "</dd>";
   layer.bindPopup(popupContent);
 }
 

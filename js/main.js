@@ -1,6 +1,7 @@
 
 var detroitSchool = "https://opendata.arcgis.com/datasets/b308d05e82614ab4979690e04c90294b_0.geojson";
-var detroitPark = "https://opendata.arcgis.com/datasets/7a608c3ca434474abbca3cbcf1f96c59_0.geojson";
+//var detroitPark = "https://opendata.arcgis.com/datasets/7a608c3ca434474abbca3cbcf1f96c59_0.geojson";
+var detroitPark = "https://opendata.arcgis.com/datasets/4f9dd1ac6dd0408fb8da07da63e7b90a_0.geojson";
 var detroitLibrary = "https://opendata.arcgis.com/datasets/464cf28590764dd69169d8d01428ce90_0.geojson";
 var detroitRec = "https://opendata.arcgis.com/datasets/5639faf260dd483aa5ab0f578e24154f_0.geojson";
 var detroitAlameda = "https://opendata.arcgis.com/datasets/4b886654a8d846a782658bd4712e7952_0.geojson";

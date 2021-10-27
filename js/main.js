@@ -6,7 +6,7 @@ var detroitRec = "https://opendata.arcgis.com/datasets/5639faf260dd483aa5ab0f578
 var detroitAlameda = "https://opendata.arcgis.com/datasets/4b886654a8d846a782658bd4712e7952_0.geojson";
 var detroitHospital = "https://opendata.arcgis.com/datasets/00c18efb31d94dc99ed61308e9c84562_0.geojson";
 #var detroitNeighborhood = "https://opendata.arcgis.com/datasets/f08cca6141fc454394e25f96ea9facef_0.geojson";
-detroitNeighborhood = "https://opendata.arcgis.com/datasets/a9fdbb729c904eddaa9353471b07e81c_0.geojson";
+var detroitNeighborhood = "https://opendata.arcgis.com/datasets/a9fdbb729c904eddaa9353471b07e81c_0.geojson";
 
 
 

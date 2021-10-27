@@ -222,7 +222,7 @@ function getColor(acr) {
 
 function initialStyle(feature) {
     return {
-        fillColor: getColor(feature.properties.acres),
+        fillColor: '#E08519',
         weight: 3,
         opacity: 1,
         color: 'white',
@@ -230,6 +230,7 @@ function initialStyle(feature) {
         fillOpacity: 0.75
       };
     }
+//getColor(feature.properties.acres);
 
 var info = L.control();
 
